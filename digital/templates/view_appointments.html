@@ -1,0 +1,40 @@
+<!-- healthcare/templates/healthcare/view_appointments.html -->
+
+{% extends 'h_base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h4>Your Appointments</h4>
+        </div>
+        <div class="card-body">
+            {% if appointments %}
+            <ul class="list-group">
+                {% for appointment in appointments %}
+                <li class="list-group-item">
+                    <h5>{{ appointment.doctor }}</h5>
+                    <p>{{ appointment.date|date:"F d, Y" }} at {{ appointment.time|time:"h:i A" }}</p>
+                    <p>{{ appointment.reason }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>You have no appointments scheduled.</p>
+            {% endif %}
+            <form method="post" action="{% url 'delete_selected_appointments' %}">
+                {% csrf_token %}
+                <ul>
+                  {% for appointment in appointments %}
+                    <li>
+                      <input type="checkbox" name="appointment_ids" value="{{ appointment.id }}">
+                      <span>{{ appointment.patient_name }} - {{ appointment.date }}</span>
+                    </li>
+                  {% endfor %}
+                </ul>
+                <button type="submit">Delete selected</button>
+              </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+/* healthcare/static/healthcare/css/style.css */
+
+body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.card-header {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+.list-group-item {
+    border-color: #dee2e6;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+.list-group-item h5 {
+    margin-bottom: 0;
+}
+
+.list-group-item p {
+    margin-bottom: 5px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #007bff;
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 960px;
+    }
+}

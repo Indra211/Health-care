@@ -1,0 +1,23 @@
+
+
+{% extends 'h_base.html' %}
+
+{% block title %}
+My Account - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h5 class="card-header">Home</h5>
+    <div class="card-body">
+        <h5 class="card-title">Welcome, {{ user.first_name }}&nbsp{{ user.last_name }}&nbsp!</h5>
+        <p class="card-text">This is your account page. From here, you can access and manage your reports, appointments, and more.</p>
+        <ul class="list-group">
+            <li class="list-group-item"><a href="{% url 'upload_report' %}">Upload a new report</a></li>
+            <li class="list-group-item"><a href="{% url 'view_reports' %}">View all reports</a></li>
+            <li class="list-group-item"><a href="{% url 'view_appointments' %}">View all appointments</a></li>
+            <li class="list-group-item"><a href="{% url 'view_doctors' %}">Find a doctor</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

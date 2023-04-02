@@ -1,0 +1,24 @@
+
+
+{% extends 'h_base.html' %}
+
+{% block title %}
+Home - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to Digital Healthcare!</h1>
+    <p class="lead">We are dedicated to providing high-quality healthcare services online.</p>
+    <hr class="my-4">
+    <p>Explore our services and features:</p>
+    {% if user.is_authenticated %}
+    <p><a class="btn btn-primary btn-lg" href="{% url 'user_home' %}" role="button">Go to My Account</a></p>
+    {% else %}
+    <p>If you new </p>
+    <p><a class="btn btn-primary btn-lg" href="{% url 'user_register' %}" role="button">Register</a></p>
+    <p>Already have account ?</p>
+    <p><a class="btn btn-primary btn-lg" href="{% url 'user_login' %}" role="button">Login</a></p>
+    {% endif %}
+</div>
+{% endblock %}

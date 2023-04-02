@@ -1,0 +1,37 @@
+
+
+{% extends 'h_base.html' %}
+
+{% block title %}
+My Reports - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h5 class="card-header">My Reports</h5>
+    <div class="card-body">
+        <ul class="list-group">
+            {% for report in reports %}
+            <li class="list-group-item">
+                <a href="{{ report.report_file.url }}" target="_blank">{{ report.title }}</a>
+                <p>{{ report.description }}</p>
+            </li>
+            {% empty %}
+            <li class="list-group-item">No reports yet.</li>
+            {% endfor %}
+        </ul>
+        <form method="post" action="{% url 'delete_selected_reports' %}">
+            {% csrf_token %}
+            <ul>
+              {% for report in reports %}
+                <li>
+                  <input type="checkbox" name="report_ids" value="{{ report.id }}">
+                  <span>{{ report.title }} - {{ report.date }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+            <button type="submit">Delete selected</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

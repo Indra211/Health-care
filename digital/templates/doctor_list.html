@@ -1,0 +1,53 @@
+
+
+{% extends 'h_base.html' %}
+
+{% block title %}
+Find a Doctor - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h5 class="card-header">Find a Doctor</h5>
+    <div class="card-body">
+        <form method="get">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" name="name" placeholder="Enter Name">
+                <label for="specialty">Specialty:</label>
+                <input type="text" name="specialty" placeholder="Enter Specialty">
+                <label for="city">City:</label>
+                <input type="text" name="city" placeholder="Enter city">
+            </div>
+            <div class="form-group">
+                
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+</div>
+
+{% if doctors %}
+<div class="card">
+    <div class="card-body">
+        <ul class="list-group">
+            <h5 class="card-header">Doctors:</h5>
+            {% for doctor in doctors %}
+            <li class="list-group-item">
+                <p>Name: <b>{{ doctor.name }}</b></p>
+                <p>Speciality:  {{ doctor.specialty }}</p>
+                <p>Experience:  {{ doctor.experience }} yrs </p>
+                <p>Phone: {{ doctor.contact }} </p>
+                <p>Address:  {{ doctor.address }} </p>
+                <p><a href="{% url 'book_appointment' doctor.id %}" class="btn btn-primary">Book Appointment</a></p>
+            </li>
+            {% empty %}
+            {% endfor %}
+            {% else %}
+            <li class="list-group-item">No results found.</li>
+        </ul>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
