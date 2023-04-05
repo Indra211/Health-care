@@ -56,7 +56,7 @@ def book_appointment_save(request):
             appointment = form.save(commit=False)
             doctor_id = request.POST.get('doctor')
             doctor = Doctor.objects.get(id=doctor_id)
-            appointment.doctor = doctor_id
+            appointment.doctor = doctor
             appointment.user = request.user
             appointment.save()
             messages.success(request, f'Your appointment has been booked for {appointment.date} at {appointment.time}.')
